@@ -10,6 +10,9 @@ import jwt
 from .serializers import *
 
 class RegisterView(APIView):
+
+    ''' view to create user '''
+
     permission_classes = [permissions.AllowAny,]
 
     def post(self, request):
@@ -19,6 +22,9 @@ class RegisterView(APIView):
         return Response(status=status.HTTP_201_CREATED)
 
 class LoginView(APIView):
+
+    ''' View to verify user with email/password and return access token'''
+
     permission_classes = [permissions.AllowAny, ]
 
     def post(self, request):
@@ -39,11 +45,6 @@ class LoginView(APIView):
                 }
         return Response(token)
 
-class UserView(APIView):
-
-    def get(self, request):
-        serializer  = UserSerializer(request.user)
-        return Response(serializer.data)
 
  
 

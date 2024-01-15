@@ -6,6 +6,11 @@ from django.contrib.auth import get_user_model
 
 class JWTAuthentication(BaseAuthentication):
 
+    ''' 
+        Authentication class to validate authorization token and return user
+        or return authentication error
+    '''
+
     def authenticate(self, request):
 
         User = get_user_model()

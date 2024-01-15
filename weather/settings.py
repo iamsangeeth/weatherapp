@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'user',
+    'integration'
 ]
 
 MIDDLEWARE = [
@@ -179,6 +180,6 @@ REST_FRAMEWORK = {
     )
 }
 
-ACCUWEATHER_API_KEY = ''
+ACCUWEATHER_API_KEY = 'fmnaGRSDEJMaWGWjdpHtJjcDhFXF9YIb'
 
 
