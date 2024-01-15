@@ -13,9 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
         
     def create(self, validated_data):
         password = validated_data.pop('password', None)
-        print(validated_data)
         if User.objects.filter(email=validated_data['email']).exists():
-            print('here')
             raise serializers.ValidationError({'email': 'email already exists'})
         user_obj = self.Meta.model(**validated_data)
 

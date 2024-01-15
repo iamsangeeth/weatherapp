@@ -45,5 +45,5 @@ class UserView(APIView):
         serializer  = UserSerializer(request.user)
         return Response(serializer.data)
 
-
+ 
 

@@ -9,12 +9,11 @@ class JWTAuthentication(BaseAuthentication):
     def authenticate(self, request):
 
         User = get_user_model()
-        authorization_heaader = request.headers.get('Authorization')
-
-        if not authorization_heaader:
+        authorization_header = request.headers.get('Authorization')
+        if not authorization_header:
             return None
         try:
-            access_token = authorization_heaader.split(' ')[1]
+            access_token = authorization_header.split(' ')[1]
             payload = jwt.decode(
                 access_token, settings.SECRET_KEY, algorithms=['HS256'])
 
@@ -22,6 +21,8 @@ class JWTAuthentication(BaseAuthentication):
             raise exceptions.AuthenticationFailed('access_token expired')
         except IndexError:
             raise exceptions.AuthenticationFailed('Token prefix missing')
+        except Exception as e:
+            print(e)
 
         user = User.objects.filter(id=payload['id']).first()
         if user is None:
